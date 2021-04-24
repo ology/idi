@@ -3,23 +3,37 @@ package idi;
 use strict;
 use warnings;
 
-use MIDI::Simple;
+use MIDI::Simple ();
 
-our $VERSION = '0.001';
-
-1;
+our $VERSION = '0.001000';
 
 =head1 NAME
 
-idi - Module abstract placeholder text
+idi - Easy Command-line MIDI
 
 =head1 SYNOPSIS
 
-=for comment Brief examples of using the module.
+  perl -Midi -E'n("ten","C4") for 1..3; n("qn","D4"); r("qn"); n("en","E4") for 1..2'
+
+  timidity idi.mid
 
 =head1 DESCRIPTION
 
-=for comment The module's description.
+Easy Command-line MIDI
+
+=cut
+
+my $score = MIDI::Simple->new_score;
+
+#sub import {
+#    print "Hello!\n";
+#}
+
+sub END {
+  $score->write_score('idi.mid');
+}
+
+1;
 
 =head1 AUTHOR
 

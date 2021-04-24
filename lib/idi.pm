@@ -3,6 +3,8 @@ package idi;
 use strict;
 use warnings;
 
+use MIDI::Simple;
+
 our $VERSION = '0.001';
 
 1;

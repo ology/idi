@@ -25,13 +25,12 @@ Easy Command-line MIDI
 
 my $score = MIDI::Simple->new_score;
 
-#sub import {
-#    print "Hello!\n";
-#}
-
 sub END {
   $score->write_score('idi.mid');
 }
+
+sub n { $score->n(@_) }
+sub r { $score->r(@_) }
 
 1;
 

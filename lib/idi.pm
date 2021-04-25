@@ -48,7 +48,7 @@ Patch
 
 Rest
 
-=head2 t
+=head2 s
 
 Time signature
 
@@ -90,7 +90,7 @@ sub p {
 
 sub r { $score->r(@_) }
 
-sub t {
+sub s {
     my ($signature) = @_;
     my ($beats, $divisions) = split /\//, $signature;
     $score->time_signature(

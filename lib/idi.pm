@@ -14,9 +14,12 @@ idi - Easy Command-line MIDI
 
 =head1 SYNOPSIS
 
-  perl -Midi -E'n(qw(ten C4)) for 1..3; n(qw(qn D4)); r("qn"); n(qw(en E4)) for 1..2'
+  perl -Midi -E's(qw(c1 f o5); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1))'
 
   timidity idi.mid
+
+  # Compare with:
+  perl -MMIDI::Simple -E'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score "idi.mid"'
 
 =head1 DESCRIPTION
 
@@ -53,6 +56,10 @@ Patch
 Rest
 
 =head2 s
+
+Setup score (C<MIDI::Simple::noop>)
+
+=head2 t
 
 Time signature
 
@@ -100,6 +107,11 @@ sub p {
 sub r { $score->r(@_) }
 
 sub s {
+    my (@args) = @_;
+    $score->noop(@args);
+}
+
+sub t {
     my ($signature) = @_;
     my ($beats, $divisions) = split /\//, $signature;
     $score->time_signature(

@@ -56,6 +56,8 @@ Time signature
 
 Volume
 
+=for Pod::Coverage END
+
 =cut
 
 my $score = MIDI::Simple->new_score;

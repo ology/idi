@@ -32,6 +32,10 @@ BPM
 
 Channel
 
+=head2 d
+
+Duration
+
 =head2 o
 
 Octave
@@ -74,6 +78,11 @@ sub b {
 sub c {
     my ($channel) = @_;
     $score->Channel($channel);
+}
+
+sub d {
+    my ($duration) = @_;
+    $score->Duration($duration);
 }
 
 sub o {

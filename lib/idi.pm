@@ -27,7 +27,7 @@ our @EXPORT_OK = qw(
     x
 );
 
-our $VERSION = '0.0100';
+our $VERSION = '0.0101';
 
 =head1 SYNOPSIS
 

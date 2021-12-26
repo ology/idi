@@ -15,7 +15,7 @@ our $VERSION = '0.0100';
 
 =head1 SYNOPSIS
 
-  perl -Midi -E's(qw(c1 f o5); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1))'
+  perl -Midi -E's(qw(c1 f o5); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()'
 
   timidity idi.mid
 
@@ -26,15 +26,7 @@ our $VERSION = '0.0100';
 
 Easy Command-line MIDI
 
-=head1 ATTRIBUTES
-
-=head2 score
-
-  $score = $m->score;
-
-A C<MIDI::Simple-E<gt>new_score> object
-
-=head1 METHODS
+=head1 FUNCTIONS
 
 =head2 b
 
@@ -80,7 +72,15 @@ Volume
 
 Write score
 
+=for Pod::Coverage BUILD
+
 =cut
+
+my $self;
+
+sub BEGIN {
+    $self = idi->new;
+}
 
 has filename => (
     is      => 'ro',
@@ -93,48 +93,39 @@ has score => (
 );
 
 sub b {
-    my $self = shift;
     my ($bpm) = @_;
     $self->score->set_tempo(bpm_to_ms($bpm) * 1000);
 }
 
 sub c {
-    my $self = shift;
     $self->score->Channel(@_);
 }
 
 sub d {
-    my $self = shift;
     $self->score->Duration(@_);
 }
 
 sub o {
-    my $self = shift;
     $self->score->Octave(@_);
 }
 
 sub n {
-    my $self = shift;
     $self->score->n(@_);
 }
 
 sub p {
-    my $self = shift;
     $self->score->patch_change(@_);
 }
 
 sub r {
-    my $self = shift;
     $self->score->r(@_);
 }
 
 sub s {
-    my $self = shift;
     $self->score->noop(@_);
 }
 
 sub t {
-    my $self = shift;
     my ($signature) = @_;
     my ($beats, $divisions) = split /\//, $signature;
     $self->score->time_signature(
@@ -146,12 +137,10 @@ sub t {
 }
 
 sub v {
-    my $self = shift;
     $self->score->Volume(@_);
 }
 
 sub w {
-    my $self = shift;
     my $name = shift || $self->filename;
     $self->score->write_score($name);
 }

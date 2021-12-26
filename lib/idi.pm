@@ -94,7 +94,9 @@ Default: C<64>
 
 =head2 w
 
-Write score
+Write score.  Supply a string argument for different name.
+
+Default filename: C<idi.mid>
 
 =head2 x
 

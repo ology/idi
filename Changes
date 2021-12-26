@@ -1,6 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
+    - Fix documentation.
 
 0.0100    2021-12-26 15:28:14 PST
-    - Minted by Dist::Zilla.
+    - Mint with Dist::Zilla.

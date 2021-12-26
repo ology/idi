@@ -31,7 +31,7 @@ our $VERSION = '0.0100';
 
 =head1 SYNOPSIS
 
-  perl -Midi -E's(qw(c1 f o5); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()'
+  perl -Midi -E'x(qw(c1 f o5); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()'
 
   timidity idi.mid
 

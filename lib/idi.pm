@@ -29,6 +29,10 @@ our @EXPORT_OK = qw(
 
 our $VERSION = '0.0101';
 
+=head1 NAME
+
+idi - Easy Command-line MIDI
+
 =head1 SYNOPSIS
 
   perl -Midi -E'x(qw(c1 f o5); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()'
@@ -104,6 +108,16 @@ No-op (with C<MIDI::Simple::noop>)
 
 =for Pod::Coverage filename
 =for Pod::Coverage score
+
+=head1 AUTHOR
+
+Gene Boggs <gene@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2021 by Gene Boggs.
+
+This is free software, licensed under: The Artistic License 2.0 (GPL Compatible)
 
 =cut
 

@@ -6,7 +6,7 @@ use warnings;
 use MIDI::Simple ();
 use Music::Tempo qw(bpm_to_ms);
 
-our $VERSION = '0.001000';
+our $VERSION = '0.0100';
 
 =head1 NAME
 

@@ -4,7 +4,7 @@ use warnings;
 
 use Test::More;
 
-use_ok 'idi', qw( get_score b c d n o p r t v w x );
+use_ok 'idi';
 
 my $s = get_score();
 

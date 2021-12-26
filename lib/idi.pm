@@ -35,7 +35,7 @@ idi - Easy Command-line MIDI
 
 =head1 SYNOPSIS
 
-  perl -Midi -E'x(qw(c1 f o5); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()'
+  perl -Midi -E'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()'
 
   timidity idi.mid
 

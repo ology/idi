@@ -11,6 +11,22 @@ use Moo;
 use strictures 2;
 use namespace::clean;
 
+use Exporter 'import';
+our @EXPORT_OK = qw(
+    get_score
+    b
+    c
+    d
+    n
+    o
+    p
+    r
+    s
+    t
+    v
+    w
+);
+
 our $VERSION = '0.0100';
 
 =head1 SYNOPSIS
@@ -72,25 +88,30 @@ Volume
 
 Write score
 
-=for Pod::Coverage BUILD
+=for Pod::Coverage filename
+=for Pod::Coverage score
 
 =cut
 
 my $self;
 
 sub BEGIN {
+    has filename => (
+        is      => 'ro',
+        default => sub { 'idi.mid' },
+    );
+
+    has score => (
+        is      => 'ro',
+        default => sub { MIDI::Simple->new_score },
+    );
+
     $self = __PACKAGE__->new;
 }
 
-has filename => (
-    is      => 'ro',
-    default => sub { 'idi.mid' },
-);
-
-has score => (
-    is      => 'ro',
-    default => sub { MIDI::Simple->new_score },
-);
+sub get_score {
+    return $self->score;
+}
 
 sub b {
     my ($bpm) = @_;

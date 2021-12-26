@@ -62,7 +62,7 @@ Default: <96>
 
 =head2 n
 
-Note
+Add note
 
 =head2 o
 
@@ -78,7 +78,7 @@ Default: C<0> (piano)
 
 =head2 r
 
-Rest
+Add rest
 
 =head2 t
 

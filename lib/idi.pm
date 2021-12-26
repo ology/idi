@@ -126,12 +126,12 @@ sub d {
     $self->score->Duration(@_);
 }
 
-sub o {
-    $self->score->Octave(@_);
-}
-
 sub n {
     $self->score->n(@_);
+}
+
+sub o {
+    $self->score->Octave(@_);
 }
 
 sub p {

@@ -21,10 +21,10 @@ our @EXPORT_OK = qw(
     o
     p
     r
-    s
     t
     v
     w
+    x
 );
 
 our $VERSION = '0.0100';
@@ -72,10 +72,6 @@ Patch
 
 Rest
 
-=head2 s
-
-Setup score (C<MIDI::Simple::noop>)
-
 =head2 t
 
 Time signature
@@ -87,6 +83,10 @@ Volume
 =head2 w
 
 Write score
+
+=head2 x
+
+Setup score (C<MIDI::Simple::noop>)
 
 =for Pod::Coverage filename
 =for Pod::Coverage score
@@ -142,10 +142,6 @@ sub r {
     $self->score->r(@_);
 }
 
-sub s {
-    $self->score->noop(@_);
-}
-
 sub t {
     my ($signature) = @_;
     my ($beats, $divisions) = split /\//, $signature;
@@ -164,6 +160,10 @@ sub v {
 sub w {
     my $name = shift || $self->filename;
     $self->score->write_score($name);
+}
+
+sub x {
+    $self->score->noop(@_);
 }
 
 1;

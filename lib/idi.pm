@@ -79,7 +79,7 @@ Write score
 my $self;
 
 sub BEGIN {
-    $self = idi->new;
+    $self = __PACKAGE__->new;
 }
 
 has filename => (

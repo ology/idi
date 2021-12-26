@@ -1,6 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
+    - Fix exports.
 
 0.0101    2021-12-26 15:37:19 PST
     - Fix documentation.

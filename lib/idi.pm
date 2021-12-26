@@ -12,7 +12,7 @@ use strictures 2;
 use namespace::clean;
 
 use Exporter 'import';
-our @EXPORT_OK = qw(
+our @EXPORT = qw(
     get_score
     b
     c

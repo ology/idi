@@ -1,16 +1,17 @@
 package idi;
 
+# ABSTRACT: Easy Command-line MIDI
+
 use strict;
 use warnings;
 
 use MIDI::Simple ();
 use Music::Tempo qw(bpm_to_ms);
+use Moo;
+use strictures 2;
+use namespace::clean;
 
 our $VERSION = '0.0100';
-
-=head1 NAME
-
-idi - Easy Command-line MIDI
 
 =head1 SYNOPSIS
 
@@ -25,7 +26,15 @@ idi - Easy Command-line MIDI
 
 Easy Command-line MIDI
 
-=head1 FUNCTIONS
+=head1 ATTRIBUTES
+
+=head2 score
+
+  $score = $m->score;
+
+A C<MIDI::Simple-E<gt>new_score> object
+
+=head1 METHODS
 
 =head2 b
 
@@ -67,54 +76,68 @@ Time signature
 
 Volume
 
-=for Pod::Coverage END
+=head2 w
+
+Write score
 
 =cut
 
-my $score = MIDI::Simple->new_score;
+has filename => (
+    is      => 'ro',
+    default => sub { 'idi.mid' },
+);
 
-sub END {
-  $score->write_score('idi.mid');
-}
+has score => (
+    is      => 'ro',
+    default => sub { MIDI::Simple->new_score },
+);
 
 sub b {
+    my $self = shift;
     my ($bpm) = @_;
-    $score->set_tempo(bpm_to_ms($bpm) * 1000);
+    $self->score->set_tempo(bpm_to_ms($bpm) * 1000);
 }
 
 sub c {
-    my ($channel) = @_;
-    $score->Channel($channel);
+    my $self = shift;
+    $self->score->Channel(@_);
 }
 
 sub d {
-    my ($duration) = @_;
-    $score->Duration($duration);
+    my $self = shift;
+    $self->score->Duration(@_);
 }
 
 sub o {
-    my ($octave) = @_;
-    $score->Octave($octave);
+    my $self = shift;
+    $self->score->Octave(@_);
 }
 
-sub n { $score->n(@_) }
+sub n {
+    my $self = shift;
+    $self->score->n(@_);
+}
 
 sub p {
-    my ($channel, $patch) = @_;
-    $score->patch_change($channel, $patch);
+    my $self = shift;
+    $self->score->patch_change(@_);
 }
 
-sub r { $score->r(@_) }
+sub r {
+    my $self = shift;
+    $self->score->r(@_);
+}
 
 sub s {
-    my (@args) = @_;
-    $score->noop(@args);
+    my $self = shift;
+    $self->score->noop(@_);
 }
 
 sub t {
+    my $self = shift;
     my ($signature) = @_;
     my ($beats, $divisions) = split /\//, $signature;
-    $score->time_signature(
+    $self->score->time_signature(
         $beats,
         ($divisions == 8 ? 3 : 2),
         ($divisions == 8 ? 24 : 18 ),
@@ -123,21 +146,14 @@ sub t {
 }
 
 sub v {
-    my ($volume) = @_;
-    $score->Volume($volume);
+    my $self = shift;
+    $self->score->Volume(@_);
+}
+
+sub w {
+    my $self = shift;
+    my $name = shift || $self->filename;
+    $self->score->write_score($name);
 }
 
 1;
-
-=head1 AUTHOR
-
-Gene Boggs <gene@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is Copyright (c) 2021 by Gene Boggs.
-
-This is free software, licensed under:
-
-  The Artistic License 2.0 (GPL Compatible)
-

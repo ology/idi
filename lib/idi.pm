@@ -39,13 +39,13 @@ Channel
 
 Duration
 
-=head2 o
-
-Octave
-
 =head2 n
 
 Note
+
+=head2 o
+
+Octave
 
 =head2 p
 

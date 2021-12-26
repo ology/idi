@@ -20,7 +20,7 @@ our $VERSION = '0.0100';
   timidity idi.mid
 
   # Compare with:
-  perl -MMIDI::Simple -E'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score "idi.mid"'
+  perl -MMIDI::Simple -E'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score shift()' idi.mid
 
 =head1 DESCRIPTION
 

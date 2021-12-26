@@ -52,9 +52,13 @@ BPM
 
 Channel
 
+Default: C<0>
+
 =head2 d
 
 Duration
+
+Default: <96>
 
 =head2 n
 
@@ -64,9 +68,13 @@ Note
 
 Octave
 
+Default: C<5>
+
 =head2 p
 
 Patch
+
+Default: C<0> (piano)
 
 =head2 r
 
@@ -76,9 +84,13 @@ Rest
 
 Time signature
 
+Default: C<none>
+
 =head2 v
 
 Volume
+
+Default: C<64>
 
 =head2 w
 
@@ -86,7 +98,7 @@ Write score
 
 =head2 x
 
-Setup score (C<MIDI::Simple::noop>)
+No-op (with C<MIDI::Simple::noop>)
 
 =for Pod::Coverage filename
 =for Pod::Coverage score

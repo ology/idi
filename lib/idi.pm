@@ -44,7 +44,7 @@ idi - Easy Command-line MIDI
 
 =head1 DESCRIPTION
 
-Easy Command-line MIDI
+Easy, command-line MIDI!
 
 =head1 FUNCTIONS
 

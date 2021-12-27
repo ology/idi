@@ -29,6 +29,81 @@ our @EXPORT = qw(
 
 our $VERSION = '0.0103';
 
+my $self;
+
+sub BEGIN {
+    has filename => (
+        is      => 'ro',
+        default => sub { 'idi.mid' },
+    );
+
+    has score => (
+        is      => 'ro',
+        default => sub { MIDI::Simple->new_score },
+    );
+
+    $self = __PACKAGE__->new;
+}
+
+sub get_score {
+    return $self->score;
+}
+
+sub b {
+    my ($bpm) = @_;
+    $self->score->set_tempo(bpm_to_ms($bpm) * 1000);
+}
+
+sub c {
+    $self->score->Channel(@_);
+}
+
+sub d {
+    $self->score->Duration(@_);
+}
+
+sub n {
+    $self->score->n(@_);
+}
+
+sub o {
+    $self->score->Octave(@_);
+}
+
+sub p {
+    $self->score->patch_change(@_);
+}
+
+sub r {
+    $self->score->r(@_);
+}
+
+sub t {
+    my ($signature) = @_;
+    my ($beats, $divisions) = split /\//, $signature;
+    $self->score->time_signature(
+        $beats,
+        ($divisions == 8 ? 3 : 2),
+        ($divisions == 8 ? 24 : 18 ),
+        8
+    );
+}
+
+sub v {
+    $self->score->Volume(@_);
+}
+
+sub w {
+    my $name = shift || $self->filename;
+    $self->score->write_score($name);
+}
+
+sub x {
+    $self->score->noop(@_);
+}
+
+1;
+
 =head1 NAME
 
 idi - Easy Command-line MIDI
@@ -120,78 +195,3 @@ This software is Copyright (c) 2021 by Gene Boggs.
 This is free software, licensed under: The Artistic License 2.0 (GPL Compatible)
 
 =cut
-
-my $self;
-
-sub BEGIN {
-    has filename => (
-        is      => 'ro',
-        default => sub { 'idi.mid' },
-    );
-
-    has score => (
-        is      => 'ro',
-        default => sub { MIDI::Simple->new_score },
-    );
-
-    $self = __PACKAGE__->new;
-}
-
-sub get_score {
-    return $self->score;
-}
-
-sub b {
-    my ($bpm) = @_;
-    $self->score->set_tempo(bpm_to_ms($bpm) * 1000);
-}
-
-sub c {
-    $self->score->Channel(@_);
-}
-
-sub d {
-    $self->score->Duration(@_);
-}
-
-sub n {
-    $self->score->n(@_);
-}
-
-sub o {
-    $self->score->Octave(@_);
-}
-
-sub p {
-    $self->score->patch_change(@_);
-}
-
-sub r {
-    $self->score->r(@_);
-}
-
-sub t {
-    my ($signature) = @_;
-    my ($beats, $divisions) = split /\//, $signature;
-    $self->score->time_signature(
-        $beats,
-        ($divisions == 8 ? 3 : 2),
-        ($divisions == 8 ? 24 : 18 ),
-        8
-    );
-}
-
-sub v {
-    $self->score->Volume(@_);
-}
-
-sub w {
-    my $name = shift || $self->filename;
-    $self->score->write_score($name);
-}
-
-sub x {
-    $self->score->noop(@_);
-}
-
-1;

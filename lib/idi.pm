@@ -1,6 +1,6 @@
 package idi;
 
-# ABSTRACT: Easy Command-line MIDI
+# ABSTRACT: Easy, command-line MIDI
 
 use strict;
 use warnings;

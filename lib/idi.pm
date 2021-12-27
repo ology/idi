@@ -106,7 +106,7 @@ sub x {
 
 =head1 NAME
 
-idi - Easy Command-line MIDI
+idi - Easy, command-line MIDI
 
 =head1 SYNOPSIS
 

@@ -5,6 +5,7 @@ package idi;
 use strict;
 use warnings;
 
+use File::Slurper qw(read_binary);
 use MIDI::Simple ();
 use Music::Tempo qw(bpm_to_ms);
 use Moo;
@@ -17,6 +18,7 @@ our @EXPORT = qw(
     b
     c
     d
+    e
     n
     o
     p
@@ -27,7 +29,7 @@ our @EXPORT = qw(
     x
 );
 
-our $VERSION = '0.0103';
+our $VERSION = '0.0200';
 
 my $self;
 
@@ -42,7 +44,19 @@ sub BEGIN {
         default => sub { MIDI::Simple->new_score },
     );
 
+    has play => (
+        is      => 'rw',
+        default => sub { 1 },
+    );
+
     $self = __PACKAGE__->new;
+}
+
+sub END {
+    if ($self->play) {
+        my $content = read_binary($self->filename);
+        print $content;
+    }
 }
 
 sub get_score {
@@ -60,6 +74,11 @@ sub c {
 
 sub d {
     $self->score->Duration(@_);
+}
+
+sub e {
+    my ($value) = @_;
+    $self->play($value);
 }
 
 sub n {
@@ -110,12 +129,11 @@ idi - Easy, command-line MIDI
 
 =head1 SYNOPSIS
 
-  perl -Midi -E'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()'
-
-  timidity idi.mid
+  $ perl -Midi -E'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()' | timidity -
 
   # Compare with:
-  perl -MMIDI::Simple -E'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score shift()' idi.mid
+  $ perl -MMIDI::Simple -E'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score shift()' idi.mid
+  $ timidity idi.mid
 
 =head1 DESCRIPTION
 
@@ -138,6 +156,12 @@ Default: C<0>
 Duration
 
 Default: <96>
+
+=head2 e
+
+Play at end
+
+Default: <1>
 
 =head2 n
 

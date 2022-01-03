@@ -1,7 +1,8 @@
 Revision history for idi
 
 {{$NEXT}}
-    - Improve documentation slightly.
+    - Print the midi file to STDOUT on END by default.
+    - Improve documentation.
 
 0.0102    2021-12-26 15:51:24 PST
     - Fix exports.

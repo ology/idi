@@ -8,6 +8,8 @@ use_ok 'idi';
 
 my $s = get_score();
 
+e(0); # Turn off "play-on-end"
+
 b(100);
 is_deeply [$s->Score]->[-1], ['set_tempo', 0, 600000], 'b';
 

@@ -1,6 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
+    - Fix documentation.
 
 0.0201    2022-01-02 23:23:15 PST
     - Make w() optional.

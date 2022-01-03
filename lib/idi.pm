@@ -156,7 +156,7 @@ Easy, command-line MIDI!
 
 =head2 b
 
-BPM
+Set BPM
 
 =head2 c
 
@@ -168,13 +168,13 @@ Default: C<0>
 
 Duration
 
-Default: <96>
+Default: C<96>
 
 =head2 e
 
 Play at end
 
-Default: <1>
+Default: C<1>
 
 =head2 n
 
@@ -210,7 +210,8 @@ Default: C<64>
 
 =head2 w
 
-Write score.  Supply a string argument for different name.
+Write score.  Supply a string argument to set and use a different
+B<filename>.
 
 Default filename: C<idi.mid>
 

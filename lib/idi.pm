@@ -220,6 +220,8 @@ No-op (with C<MIDI::Simple::noop>)
 
 =for Pod::Coverage filename
 =for Pod::Coverage score
+=for Pod::Coverage play
+=for Pod::Coverage is_written
 
 =head1 AUTHOR
 

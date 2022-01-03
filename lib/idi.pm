@@ -35,7 +35,7 @@ my $self;
 
 sub BEGIN {
     has filename => (
-        is      => 'ro',
+        is      => 'rw',
         default => sub { 'idi.mid' },
     );
 
@@ -49,11 +49,17 @@ sub BEGIN {
         default => sub { 1 },
     );
 
+    has is_written => (
+        is      => 'rw',
+        default => sub { 0 },
+    );
+
     $self = __PACKAGE__->new;
 }
 
 sub END {
     if ($self->play) {
+        $self->score->write_score($self->filename) unless $self->is_written;
         my $content = read_binary($self->filename);
         print $content;
     }
@@ -113,8 +119,15 @@ sub v {
 }
 
 sub w {
-    my $name = shift || $self->filename;
+    my ($name) = @_;
+    if ($name) {
+        $self->filename($name);
+    }
+    else {
+        $name = $self->filename;
+    }
     $self->score->write_score($name);
+    $self->is_written(1);
 }
 
 sub x {
@@ -129,7 +142,7 @@ idi - Easy, command-line MIDI
 
 =head1 SYNOPSIS
 
-  $ perl -Midi -E'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1)); w()' | timidity -
+  $ perl -Midi -E'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1))' | timidity -
 
   # Compare with:
   $ perl -MMIDI::Simple -E'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score shift()' idi.mid

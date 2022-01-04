@@ -199,7 +199,7 @@ Default: C<5>
 
 Patch
 
-Default: C<0> (piano)
+Default: C<0, 0> (channel 0, piano)
 
 =head2 r
 

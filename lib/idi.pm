@@ -234,6 +234,8 @@ No-op (with C<MIDI::Simple::noop>)
 
 =head1 SEE ALSO
 
+The F<t/01-methods.t> file in this distribution
+
 L<Exporter>
 
 L<File::Slurper>

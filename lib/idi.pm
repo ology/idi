@@ -219,10 +219,9 @@ Default: C<64>
 
 =head2 w
 
-Write score.  Supply a string argument to set and use a different
-B<filename>.
+Write score to a temporary file.
 
-Default filename: C<idi.mid>
+Supply a string argument to set and use a persistent B<filename>.
 
 =head2 x
 
@@ -234,6 +233,8 @@ No-op (with C<MIDI::Simple::noop>)
 =for Pod::Coverage is_written
 
 =head1 SEE ALSO
+
+L<Exporter>
 
 L<File::Slurper>
 

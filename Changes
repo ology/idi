@@ -1,6 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
+    - Fix w() documentation.
 
 0.0300    2022-01-03 18:46:07 PST
     - Fix copyright year - Ugh. :\

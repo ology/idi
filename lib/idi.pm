@@ -165,9 +165,13 @@ Easy, command-line MIDI!
 
 =head2 b
 
+  b(100)
+
 Set BPM
 
 =head2 c
+
+  c(15)
 
 Channel
 
@@ -175,11 +179,15 @@ Default: C<0>
 
 =head2 d
 
+  d(128)
+
 Duration
 
 Default: C<96>
 
 =head2 e
+
+  e(0)
 
 Play at end
 
@@ -187,9 +195,14 @@ Default: C<1>
 
 =head2 n
 
-Add note
+  n(@note_spec)
+
+Add note.  See the L<MIDI::Simple> documentation for what a
+"note_spec" is.
 
 =head2 o
+
+  o(3)
 
 Octave
 
@@ -197,15 +210,22 @@ Default: C<5>
 
 =head2 p
 
+  p($channel, $patch_number)
+
 Patch
 
 Default: C<0, 0> (channel 0, piano)
 
 =head2 r
 
-Add rest
+  r($note_duration)
+
+Add rest. See the L<MIDI::Simple> documentation for what
+"note_durations" are valid.
 
 =head2 t
+
+  t("$numerator/$denominator")
 
 Time signature
 
@@ -213,15 +233,17 @@ Default: C<none>
 
 =head2 v
 
+  v(127)
+
 Volume
 
 Default: C<64>
 
 =head2 w
 
-Write score to a temporary file.
+  w('filename.mid')
 
-Supply a string argument to set and use a persistent B<filename>.
+Write score to a file.
 
 =head2 x
 

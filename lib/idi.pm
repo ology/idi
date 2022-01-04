@@ -6,6 +6,7 @@ use strict;
 use warnings;
 
 use File::Slurper qw(read_binary);
+use File::Temp qw(tempfile);
 use MIDI::Simple ();
 use Music::Tempo qw(bpm_to_ms);
 use Moo;
@@ -29,15 +30,23 @@ our @EXPORT = qw(
     x
 );
 
-our $VERSION = '0.0203';
+our $VERSION = '0.0300';
 
 my $self;
 
 sub BEGIN {
     has filename => (
         is      => 'rw',
-        default => sub { 'idi.mid' },
+        builder => 1,
     );
+    sub _build_filename {
+        my ($fh, $filename) = tempfile('idi-XXXX',
+            DIR    => '.',
+            SUFFIX => '.mid',
+            UNLINK => 1,
+        );
+        return $filename;
+    }
 
     has score => (
         is      => 'ro',
@@ -223,6 +232,22 @@ No-op (with C<MIDI::Simple::noop>)
 =for Pod::Coverage score
 =for Pod::Coverage play
 =for Pod::Coverage is_written
+
+=head1 SEE ALSO
+
+L<File::Slurper>
+
+L<File::Temp>
+
+L<MIDI::Simple>
+
+L<Music::Tempo>
+
+L<Moo>
+
+L<strictures>
+
+L<namespace::clean>
 
 =head1 AUTHOR
 

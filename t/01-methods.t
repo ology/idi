@@ -43,7 +43,7 @@ is $s->Volume, 64, 'v';
 v(127);
 is $s->Volume, 127, 'v';
 
-w();
+w('idi.mid');
 ok -e 'idi.mid', 'w';
 
 x('c2');

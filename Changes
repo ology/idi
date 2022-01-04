@@ -2,6 +2,7 @@ Revision history for idi
 
 {{$NEXT}}
     - Fix copyright year - Ugh. :\
+    - Use a temporary file, instead of hardcoding a filename.
 
 0.0202    2022-01-02 23:41:11 PST
     - Fix documentation.

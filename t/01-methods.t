@@ -40,6 +40,9 @@ is_deeply [$s->Score]->[-1], ['patch_change', 96 * 3, 2, 42], 'p';
 t('3/4');
 is_deeply [$s->Score]->[-1], ['time_signature', 96 * 3, 3, 2, 18, 8], 't';
 
+t('6/8');
+is_deeply [$s->Score]->[-1], ['time_signature', 96 * 3, 6, 3, 24, 8], 't';
+
 is $s->Volume, 64, 'v';
 v(127);
 is $s->Volume, 127, 'v';

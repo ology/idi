@@ -13,7 +13,7 @@ use Music::Tempo qw(bpm_to_ms);
 use Moo;
 use namespace::clean;
 
-use Exporter 'import';
+use Exporter qw(import);
 our @EXPORT = qw(
     get_score
     b
@@ -30,7 +30,7 @@ our @EXPORT = qw(
     x
 );
 
-our $VERSION = '0.0303';
+our $VERSION = '0.0304';
 
 my $self;
 

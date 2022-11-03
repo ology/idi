@@ -47,8 +47,13 @@ is $s->Volume, 64, 'v';
 v(127);
 is $s->Volume, 127, 'v';
 
+w();
+my @got = glob 'idi*.mid';
+like $got[0], qr/^idi-.{4}\.mid$/, 'w';
+
 w('idi.mid');
 ok -e 'idi.mid', 'w';
+unlink 'idi.mid';
 
 x('c2');
 is $s->Channel, 2, 'x';

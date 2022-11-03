@@ -193,6 +193,10 @@ Play at end
 
 Default: C<1>
 
+=head2 get_score
+
+Return the L<MIDI::Simple> score object.
+
 =head2 n
 
   n(@note_spec)

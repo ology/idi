@@ -5,12 +5,12 @@ package idi;
 use strict;
 use warnings;
 
+use Moo;
 use strictures 2;
 use File::Slurper qw(read_binary);
 use File::Temp qw(tempfile);
 use MIDI::Simple ();
 use Music::Tempo qw(bpm_to_ms);
-use Moo;
 use namespace::clean;
 
 use Exporter 'import';

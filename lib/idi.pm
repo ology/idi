@@ -245,7 +245,7 @@ Default: C<64>
 
 =head2 w
 
-  w('filename.mid')
+  w("filename.mid")
 
 Write score to a file.
 

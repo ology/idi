@@ -65,7 +65,7 @@ subtest v => sub {
   is $s->Volume, 127, 'v';
 };
 
-subtest c => sub {
+subtest w => sub {
   w();
   my @got = glob 'idi*.mid';
   like $got[0], qr/^idi-.{4}\.mid$/, 'w';

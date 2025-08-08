@@ -66,7 +66,7 @@ subtest v => sub {
 };
 
 subtest c => sub {
-w();
+  w();
   my @got = glob 'idi*.mid';
   like $got[0], qr/^idi-.{4}\.mid$/, 'w';
   w('idi.mid');

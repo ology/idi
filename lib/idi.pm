@@ -166,7 +166,7 @@ idi - Easy, command-line MIDI
   timidity -Od idi.mid
 
   # Control a MIDI device (uniquely named "usb") in real-time
-  perl -Midi -Ei 'i(@ARGV)' keyboard usb
+  perl -Midi -E 'i(@ARGV)' keyboard usb
 
 =head1 DESCRIPTION
 

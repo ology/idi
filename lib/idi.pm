@@ -9,6 +9,7 @@ use Moo;
 use strictures 2;
 use File::Slurper qw(read_binary);
 use File::Temp qw(tempfile);
+use MIDI::RtController ();
 use MIDI::Simple ();
 use Music::Tempo qw(bpm_to_ms);
 use namespace::clean;
@@ -20,6 +21,7 @@ our @EXPORT = qw(
     c
     d
     e
+    i
     n
     o
     p
@@ -96,6 +98,11 @@ sub e {
     $self->play($value);
 }
 
+sub i {
+    my $rtc = MIDI::RtController->new(input => $_[0], output => $_[1], verbose => 1);
+    $rtc->run;
+}
+
 sub n {
     $self->score->n(@_);
 }
@@ -151,11 +158,15 @@ idi - Easy, command-line MIDI
 
 =head1 SYNOPSIS
 
-  $ perl -Midi -E'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1))' | timidity -
+  perl -Midi -E 'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1))' | timidity -Od -
+  # or with fluidsynth
 
   # Compare with:
-  $ perl -MMIDI::Simple -E'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score shift()' idi.mid
-  $ timidity idi.mid
+  perl -MMIDI::Simple -E 'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score shift()' idi.mid
+  timidity -Od idi.mid
+
+  # Control a MIDI device (uniquely named "usb") in real-time
+  perl -Midi -Ei 'i(@ARGV)' keyboard usb
 
 =head1 DESCRIPTION
 
@@ -192,6 +203,11 @@ Default: C<96>
 Play at end
 
 Default: C<1>
+
+=head2 i
+
+Invoke L<MIDI::RtController> to control the second argument with the
+first.
 
 =head2 get_score
 

@@ -1,6 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
+    - Fix an annoying synopsis typo.
 
 0.0400    2025-08-08 18:36:52 PDT
     - Use subtests.

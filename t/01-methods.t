@@ -6,7 +6,7 @@ use Test::More;
 
 use_ok 'idi';
 
-my $s = get_score();
+my $s = s();
 isa_ok $s, 'MIDI::Simple';
 
 diag 'Turn off "play-on-end"';

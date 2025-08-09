@@ -19,12 +19,12 @@ our @EXPORT = qw(
     c
     d
     e
+    g
     i
     n
     o
     p
     r
-    s
     t
     v
     w
@@ -75,10 +75,6 @@ sub END {
     }
 }
 
-sub s {
-    return $self->score;
-}
-
 sub b {
     my ($bpm) = @_;
     $self->score->set_tempo(bpm_to_ms($bpm) * 1000);
@@ -95,6 +91,10 @@ sub d {
 sub e {
     my ($value) = @_;
     $self->play($value);
+}
+
+sub g {
+    return $self->score;
 }
 
 sub i {
@@ -203,6 +203,10 @@ Play at end
 
 Default: C<1>
 
+=head2 g
+
+Return the L<MIDI::Simple> score object.
+
 =head2 i
 
 Invoke L<MIDI::RtController> to control the second argument with the
@@ -237,10 +241,6 @@ Default: C<0, 0> (channel 0, piano)
 
 Add rest. See the L<MIDI::Simple> documentation for what
 "note_durations" are valid.
-
-=head2 s
-
-Return the L<MIDI::Simple> score object.
 
 =head2 t
 

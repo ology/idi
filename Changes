@@ -1,6 +1,8 @@
 Revision history for idi
 
 {{$NEXT}}
+
+0.0402    2025-08-08 22:20:39 PDT
     - Rename the get_score() function.
 
 0.0401    2025-08-08 19:58:58 PDT

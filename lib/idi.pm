@@ -13,10 +13,8 @@ use MIDI::RtController ();
 use MIDI::Simple ();
 use Music::Tempo qw(bpm_to_ms);
 use namespace::clean;
-
 use Exporter qw(import);
 our @EXPORT = qw(
-    get_score
     b
     c
     d
@@ -26,6 +24,7 @@ our @EXPORT = qw(
     o
     p
     r
+    s
     t
     v
     w
@@ -76,7 +75,7 @@ sub END {
     }
 }
 
-sub get_score {
+sub s {
     return $self->score;
 }
 
@@ -209,10 +208,6 @@ Default: C<1>
 Invoke L<MIDI::RtController> to control the second argument with the
 first.
 
-=head2 get_score
-
-Return the L<MIDI::Simple> score object.
-
 =head2 n
 
   n(@note_spec)
@@ -242,6 +237,10 @@ Default: C<0, 0> (channel 0, piano)
 
 Add rest. See the L<MIDI::Simple> documentation for what
 "note_durations" are valid.
+
+=head2 s
+
+Return the L<MIDI::Simple> score object.
 
 =head2 t
 
@@ -300,7 +299,7 @@ Gene Boggs <gene@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2022 by Gene Boggs.
+This software is Copyright (c) 2022-2025 by Gene Boggs.
 
 This is free software, licensed under: The Artistic License 2.0 (GPL Compatible)
 

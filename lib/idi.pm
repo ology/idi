@@ -164,7 +164,7 @@ idi - Easy, command-line MIDI
 
 =head1 SYNOPSIS
 
-  perl -Midi -E 'x(qw(c1 f o5)); n(qw(qn Cs)); n("F"); n("Ds"); n(qw(hn Gs_d1))' | timidity -Od -
+  perl -Midi -E 'x(qw(c1 f o5)); n([qw(qn Cs)],"F","Ds",[qw(hn Gs_d1)])' | timidity -Od -
   # or with fluidsynth
 
   # Compare with:

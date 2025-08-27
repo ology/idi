@@ -221,8 +221,8 @@ first.
 
 =head2 n
 
-  n(qw(hn 60))
   n(qw(hn C))
+  n(qw(hn 60))
   n(qw(hn C E G))
   n(qw(hn 60 64 67))
   n([qw(hn 60 64 67)], [qw(hn 65 69 71)], ...)

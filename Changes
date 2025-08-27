@@ -1,6 +1,8 @@
 Revision history for idi
 
 {{$NEXT}}
+
+0.0404    2025-08-27 13:06:44 PDT
     - Actually update the synopsis and n() usage docs.
 
 0.0403    2025-08-27 12:49:43 PDT

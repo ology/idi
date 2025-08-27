@@ -1,7 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
-    - Actually update the synopsis...
+    - Actually update the synopsis and n() usage docs.
 
 0.0403    2025-08-27 12:49:43 PDT
     - Shrink the the n() function calls and arguments.

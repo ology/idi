@@ -221,10 +221,16 @@ first.
 
 =head2 n
 
-  n(@note_spec)
+  n(qw(hn 60))
+  n(qw(hn C))
+  n(qw(hn C E G))
+  n(qw(hn 60 64 67))
+  n([qw(hn 60 64 67)], [qw(hn 65 69 71)], ...)
+  n(\@note_spec1, \@note_spec2, ...)
 
-Add note.  See the L<MIDI::Simple> documentation for what a
-"note_spec" is.
+Add notes as either a list of a single note-spec or a list of
+array-references of note-specs. Please see the L<MIDI::Simple>
+documentation for what a "note_spec" is.
 
 =head2 o
 

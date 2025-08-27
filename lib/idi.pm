@@ -103,7 +103,14 @@ sub i {
 }
 
 sub n {
-    $self->score->n(@_);
+    if (ref $_[0] eq 'ARRAY') {
+        for my $notes (@_) {
+            $self->score->n(@$notes);
+        }
+    }
+    else {
+        $self->score->n(@_);
+    }
 }
 
 sub o {

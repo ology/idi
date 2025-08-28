@@ -314,7 +314,7 @@ Default: C<none>
   use String::Random ();
   my $gen = String::Random->new;
   my $pat = sub { $gen->randregex("[01]{16}") };
-  u(4, map { [$pat->()] } 1 .. 4);
+  u(4, map { [$pat->()] } 1 .. 3);
 
 Play a drum pattern à la L<MIDI::Drummer::Tiny> with 16th-note beat
 resolution.

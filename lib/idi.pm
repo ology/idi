@@ -165,7 +165,7 @@ sub u {
         $self->drummer->kick      => $kick,
         $self->drummer->snare     => $snare,
         $self->drummer->closed_hh => $hhat,
-        # duration => $self->drummer->eighth,
+        duration => $self->drummer->sixteenth,
     ) for 1 .. $reps;
     $self->is_drums(1);
     $self->drummer->score;
@@ -211,7 +211,7 @@ idi - Easy, command-line MIDI
   timidity -Od idi.mid
 
   # Play a drum back-beat:
-  perl -Midi -E 'u(4, ["1010"], ["0101"], ["1111"])' | timidity -Od -
+  perl -Midi -E 'u(4,["1000000010000000"],["0000100000001000"],["1010101010101010"])' | timidity -Od -
 
   # Control a MIDI device (uniquely named "usb") in real-time
   perl -Midi -E 'i(@ARGV)' keyboard usb

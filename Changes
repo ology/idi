@@ -1,6 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
+    - Show an extended example of random u() phrases.
 
 0.0503    2025-08-28 01:00:30 PDT
     - Document the beat resolution change?

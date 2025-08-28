@@ -85,6 +85,12 @@ subtest x => sub {
   is $s->Channel, 2, 'x';
 };
 
+subtest u => sub {
+  my $x = u(2, ['1010'], ['0101'], ['1111']);
+  is @{$x->{Score}}, 21, 'u';
+  is $x->{Score}[-1][3], 9, 'channel';
+};
+
 #use Data::Dumper::Compact qw(ddc);
 #warn __PACKAGE__,' L',__LINE__,' ',ddc($s);
 

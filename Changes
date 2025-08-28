@@ -1,6 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
+    - Fix the see also doc section.
 
 0.0500    2025-08-27 20:39:28 PDT
     - Add the u() functiion to play a drum pattern.

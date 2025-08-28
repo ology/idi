@@ -33,7 +33,7 @@ our @EXPORT = qw(
     x
 );
 
-our $VERSION = '0.0405';
+our $VERSION = '0.0500';
 
 my $self;
 

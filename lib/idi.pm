@@ -345,15 +345,15 @@ L<File::Slurper>
 
 L<File::Temp>
 
+L<MIDI::Drummer::Tiny>
+
+L<MIDI::RtController>
+
 L<MIDI::Simple>
 
 L<Music::Tempo>
 
 L<Moo>
-
-L<strictures>
-
-L<namespace::clean>
 
 =head1 AUTHOR
 

@@ -310,6 +310,12 @@ Default: C<none>
   u($bars, $kick, $snare, $hihat)
   u(4, ["1000000010000000"], ["0000100000001000"], ["1010101010101010"])
 
+  # extended example:
+  use String::Random ();
+  my $gen = String::Random->new;
+  my $pat = sub { $gen->randregex("[01]{16}") };
+  u(4, map { [$pat->()] } 1 .. 4);
+
 Play a drum pattern à la L<MIDI::Drummer::Tiny> with 16th-note beat
 resolution.
 

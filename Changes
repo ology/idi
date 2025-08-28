@@ -1,7 +1,7 @@
 Revision history for idi
 
 {{$NEXT}}
-    - Uhh... Document the beat resolution change?
+    - Document the beat resolution change?
 
 0.0502    2025-08-28 00:52:21 PDT
     - Use 16th-note (drum) beat resolution for u().

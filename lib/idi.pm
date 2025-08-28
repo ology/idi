@@ -11,6 +11,7 @@ use File::Slurper qw(read_binary);
 use File::Temp qw(tempfile);
 use MIDI::RtController ();
 use MIDI::Simple ();
+use MIDI::Drummer::Tiny ();
 use Music::Tempo qw(bpm_to_ms);
 use namespace::clean;
 use Exporter qw(import);
@@ -26,6 +27,7 @@ our @EXPORT = qw(
     p
     r
     t
+    u
     v
     w
     x
@@ -54,6 +56,14 @@ sub BEGIN {
         default => sub { MIDI::Simple->new_score },
     );
 
+    has drummer => (
+        is => 'lazy',
+    );
+    sub _build_drummer {
+        my ($self) = @_;
+        MIDI::Drummer::Tiny->new(file => $self->filename);
+    }
+
     has play => (
         is      => 'rw',
         default => sub { 1 },
@@ -64,19 +74,32 @@ sub BEGIN {
         default => sub { 0 },
     );
 
+    has is_drums => (
+        is      => 'rw',
+        default => sub { 0 },
+    );
+
     $self = __PACKAGE__->new;
 }
 
 sub END {
     if ($self->play) {
-        $self->score->write_score($self->filename) unless $self->is_written;
-        my $content = read_binary($self->filename);
+        my $content;
+        if ($self->is_drums) {
+            $self->drummer->write unless $self->is_written;
+            $content = read_binary($self->filename);
+        }
+        else {
+            $self->score->write_score($self->filename) unless $self->is_written;
+            $content = read_binary($self->filename);
+        }
         print $content;
     }
 }
 
 sub b {
     my ($bpm) = @_;
+    $self->drummer->set_bpm($bpm);
     $self->score->set_tempo(bpm_to_ms($bpm) * 1000);
 }
 
@@ -136,8 +159,22 @@ sub t {
     );
 }
 
+sub u {
+    my ($reps, $kick, $snare, $hhat) = @_;
+    $self->drummer->sync_patterns(
+        $self->drummer->kick      => $kick,
+        $self->drummer->snare     => $snare,
+        $self->drummer->closed_hh => $hhat,
+        # duration => $self->drummer->eighth,
+    ) for 1 .. $reps;
+    $self->is_drums(1);
+    $self->drummer->score;
+}
+
 sub v {
-    $self->score->Volume(@_);
+    my ($vol) = @_;
+    $self->drummer->set_volume($vol);
+    $self->score->Volume($vol);
 }
 
 sub w {
@@ -170,6 +207,9 @@ idi - Easy, command-line MIDI
   # Compare with:
   perl -MMIDI::Simple -E 'new_score; noop qw(c1 f o5); n qw(qn Cs); n "F"; n "Ds"; n qw(hn Gs_d1); write_score shift()' idi.mid
   timidity -Od idi.mid
+
+  # Play a drum back-beat:
+  perl -Midi -E 'u(4, ["1010"], ["0101"], ["1111"])' | timidity -Od -
 
   # Control a MIDI device (uniquely named "usb") in real-time
   perl -Midi -E 'i(@ARGV)' keyboard usb
@@ -262,6 +302,13 @@ Add rest. See the L<MIDI::Simple> documentation for what
 Time signature
 
 Default: C<none>
+
+=head2 u
+
+  u($bars, $kick, $snare, $hihat)
+  u(4, ["1010"], ["0101"], ["1111"])
+
+Play a drum pattern à la L<MIDI::Drummer::Tiny>.
 
 =head2 v
 

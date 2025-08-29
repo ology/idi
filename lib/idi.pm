@@ -187,7 +187,7 @@ sub w {
         $self->drummer->write;
     }
     else {
-        $self->score->write_score($name);
+        $self->score->write_score($self->filename);
     }
     $self->is_written(1);
 }
